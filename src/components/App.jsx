@@ -1,16 +1,34 @@
-export const App = () => {
-  return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
-  );
-};
+import { Component } from 'react';
+import { PhoneBookName } from './phoneBookName/PhoneBookName';
+import { nanoid } from 'nanoid';
+import BookItem from './phoneBookItem/phoneBookItem';
+
+export class App extends Component {
+  state = {
+    contacts: [],
+    filter: '',
+  };
+
+  createContacts = body => {
+    this.setState(prev => ({
+      contacts: [
+        ...prev.contacts,
+        {
+          ...body,
+          id: nanoid(),
+        },
+      ],
+    }));
+  };
+
+  render() {
+    return (
+      <div>
+        <PhoneBookName createContacts={this.createContacts} />(
+        <ul className="bookList">
+          ¨¨
+        </ul>
+      </div>
+    );
+  }
+}
