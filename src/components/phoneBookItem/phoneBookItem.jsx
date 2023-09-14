@@ -1,8 +1,17 @@
-const BookItem = ({ contacts }) => {
-    return <li className="bookItem">
-        {BookItem.name}
-        <button className="btnClose" type="button" aria-label="close">Delete</button>
+const BookItem = ({ contacts, handleDelete }) => {
+  return (
+    <li className="bookItem">
+      {contacts.name}
+      <button
+        className="btnClose"
+        type="button"
+        aria-label="close"
+        onClick={() => handleDelete(contacts.id)}
+      >
+        Delete
+      </button>
     </li>
-}
+  );
+};
 
 export default BookItem;

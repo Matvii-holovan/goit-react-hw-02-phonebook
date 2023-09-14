@@ -4,6 +4,7 @@ import css from './PhoneBookName.module.css';
 export class PhoneBookName extends Component {
   state = {
     name: '',
+    number: ''
   };
 
   handelChange = ({ target: { value, name } }) => {
@@ -28,6 +29,20 @@ export class PhoneBookName extends Component {
             id="name"
             type="text"
             name="name"
+            pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+            required
+          />
+        </div>
+        <div className={css.container}>
+          <label htmlFor="number">number Book</label>
+          <input
+            value={this.state.number}
+            onChange={this.handelChange}
+            className={css.inputName}
+            id="number"
+            type="text"
+            name="number"
             pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required

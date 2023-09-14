@@ -9,7 +9,7 @@ export class App extends Component {
     filter: '',
   };
 
-  createContacts = body => {
+  createContacts = (body) => {
     this.setState(prev => ({
       contacts: [
         ...prev.contacts,
@@ -21,12 +21,24 @@ export class App extends Component {
     }));
   };
 
+  handleDelete = (id) => {
+    this.setState((prev) => ({
+      contacts: prev.contacts.filter(el => el.id !== id),
+    }));
+  };
+
   render() {
     return (
       <div>
-        <PhoneBookName createContacts={this.createContacts} />(
+        <PhoneBookName createContacts={this.createContacts} />
         <ul className="bookList">
-          ¨¨
+          {this.state.contacts.map(el => (
+            <BookItem
+              key={el.id}
+              contacts={el}
+              handleDelete={this.handleDelete}
+            />
+          ))}
         </ul>
       </div>
     );
