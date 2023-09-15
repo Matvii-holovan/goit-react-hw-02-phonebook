@@ -1,3 +1,4 @@
+import css from './App.module.css';
 import { Component } from 'react';
 import { PhoneBookName } from './phoneBookName/PhoneBookName';
 import { nanoid } from 'nanoid';
@@ -41,19 +42,23 @@ export class App extends Component {
   render() {
     return (
       <div>
-        <h1 className="titlePhoneBook">Phonebook</h1>
-        <PhoneBookName createContacts={this.createContacts} />
-        <h2 className="titleContacts">Contacts</h2>
-        <ContactsFilter filterContacts={this.filterContacts} />
-        <ul className="bookList">
-          {(this.state.filter ?? this.state.contacts).map(el => (
-            <BookItem
-              key={el.id}
-              contacts={el}
-              handleDelete={this.handleDelete}
-            />
-          ))}
-        </ul>
+        <div className={css.container}>
+          <h1 className={css.titlePhoneBook}>Phonebook</h1>
+          <PhoneBookName createContacts={this.createContacts} />
+        </div>
+        <div className={css.container}>
+          <h2 className={css.titleContacts}>Contacts</h2>
+          <ContactsFilter filterContacts={this.filterContacts} />
+          <ul className="bookList">
+            {(this.state.filter ?? this.state.contacts).map(el => (
+              <BookItem
+                key={el.id}
+                contacts={el}
+                handleDelete={this.handleDelete}
+              />
+            ))}
+          </ul>
+        </div>
       </div>
     );
   }

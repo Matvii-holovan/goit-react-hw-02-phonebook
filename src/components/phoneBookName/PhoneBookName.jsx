@@ -24,7 +24,7 @@ export class PhoneBookName extends Component {
     return (
       <form className={css.container} onSubmit={this.handelSubmit}>
         <div className={css.container}>
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name" className={css.labelInput}>Name</label>
           <input
             value={this.state.name}
             onChange={this.handelChange}
@@ -38,7 +38,7 @@ export class PhoneBookName extends Component {
           />
         </div>
         <div className={css.container}>
-          <label htmlFor="number">Number</label>
+          <label htmlFor="number" className={css.labelInput}>Number</label>
           <input
             value={this.state.number}
             onChange={this.handelChange}

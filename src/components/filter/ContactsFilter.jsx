@@ -1,3 +1,4 @@
+import css from './ContactsFilter.module.css'
 import React from 'react';
 
 const ContactsFilter = ({filterContacts}) => {
@@ -6,12 +7,12 @@ const ContactsFilter = ({filterContacts}) => {
   };
   return (
     <form className={'css.container'}>
-      <div className={'css.container'}>
-        <label htmlFor="filter">Find contacts by name</label>
+      <div className={css.container}>
+        <label htmlFor="filter"  className={css.labelInput}>Find contacts by name</label>
         <input
           //   value={this.state.filter}
+          className={css.inputFilter}
           onChange={handelChange}
-          className={'css.inputName'}
           type="text"
           name="filter"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
