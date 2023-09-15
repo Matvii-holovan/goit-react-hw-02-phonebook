@@ -9,7 +9,7 @@
     letter-spacing: 0.4px;
 }
 
-.containerList {
+.container {
     display: flex;
     flex-direction: column;
     /* margin: 10px auto; */
