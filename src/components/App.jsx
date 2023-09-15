@@ -2,37 +2,51 @@ import { Component } from 'react';
 import { PhoneBookName } from './phoneBookName/PhoneBookName';
 import { nanoid } from 'nanoid';
 import BookItem from './phoneBookItem/phoneBookItem';
-
+import ContactsFilter from './filter/ContactsFilter';
 export class App extends Component {
   state = {
     contacts: [],
-    filter: '',
+    filter: null,
   };
 
-  createContacts = (body) => {
+  createContacts = dataByForm => {
+    const alreadyExists = this.state.contacts.find(
+      el => el.name === dataByForm.name
+    );
+    if (alreadyExists) return alert('Already exist');
+
+    const newContacts = {
+      ...dataByForm,
+      id: nanoid(),
+    };
     this.setState(prev => ({
-      contacts: [
-        ...prev.contacts,
-        {
-          ...body,
-          id: nanoid(),
-        },
-      ],
+      contacts: [newContacts, ...prev.contacts],
     }));
   };
 
-  handleDelete = (id) => {
-    this.setState((prev) => ({
+  handleDelete = id => {
+    this.setState(prev => ({
       contacts: prev.contacts.filter(el => el.id !== id),
+    }));
+  };
+
+  filterContacts = filterQuery => {
+    this.setState(prev => ({
+      filter: prev.contacts.filter(el =>
+        el.name.toLowerCase().includes(filterQuery.toLowerCase())
+      ),
     }));
   };
 
   render() {
     return (
       <div>
+        <h1 className="titlePhoneBook">Phonebook</h1>
         <PhoneBookName createContacts={this.createContacts} />
+        <h2 className="titleContacts">Contacts</h2>
+        <ContactsFilter filterContacts={this.filterContacts} />
         <ul className="bookList">
-          {this.state.contacts.map(el => (
+          {(this.state.filter ?? this.state.contacts).map(el => (
             <BookItem
               key={el.id}
               contacts={el}

@@ -1,7 +1,8 @@
 const BookItem = ({ contacts, handleDelete }) => {
   return (
     <li className="bookItem">
-      {contacts.name}
+      <span>{contacts.name}</span> :
+      <span>{contacts.number}</span>
       <button
         className="btnClose"
         type="button"

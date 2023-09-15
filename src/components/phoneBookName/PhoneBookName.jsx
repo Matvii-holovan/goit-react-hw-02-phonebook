@@ -1,11 +1,13 @@
 import { Component } from 'react';
 import css from './PhoneBookName.module.css';
 
+const INITIAL_STATE = {
+  name: '',
+  number: '',
+};
+
 export class PhoneBookName extends Component {
-  state = {
-    name: '',
-    number: ''
-  };
+  state = INITIAL_STATE;
 
   handelChange = ({ target: { value, name } }) => {
     this.setState({ [name]: value });
@@ -13,15 +15,16 @@ export class PhoneBookName extends Component {
   };
   handelSubmit = e => {
     e.preventDefault();
-    this.props.createContacts(this.state)
-    console.log(this.state)
+    this.props.createContacts(this.state);
+    this.setState(INITIAL_STATE);
+    console.log(this.state);
   };
 
   render() {
     return (
       <form className={css.container} onSubmit={this.handelSubmit}>
         <div className={css.container}>
-          <label htmlFor="name">Phone Book</label>
+          <label htmlFor="name">Name</label>
           <input
             value={this.state.name}
             onChange={this.handelChange}
@@ -35,7 +38,7 @@ export class PhoneBookName extends Component {
           />
         </div>
         <div className={css.container}>
-          <label htmlFor="number">number Book</label>
+          <label htmlFor="number">Number</label>
           <input
             value={this.state.number}
             onChange={this.handelChange}
@@ -43,7 +46,7 @@ export class PhoneBookName extends Component {
             id="number"
             type="text"
             name="number"
-            pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
           />
