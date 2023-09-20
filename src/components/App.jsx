@@ -12,7 +12,7 @@ export class App extends Component {
 
   createContacts = dataByForm => {
     const alreadyExists = this.state.contacts.find(
-      el => el.name === dataByForm.name
+      el => el.name.toLowerCase() === dataByForm.name.toLowerCase()
     );
     if (alreadyExists) return alert('Already exist');
 
